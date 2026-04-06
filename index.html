@@ -2,276 +2,1118 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>
-      Emmanuel Mugaine – Computer Science with Cyber Security Undergraduate
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emmanuel Mugaine – Computer Science with Cyber Security</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0a0c10;
+        --surface: #111318;
+        --surface-2: #1a1d24;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-accent: rgba(0, 255, 163, 0.3);
+        --accent: #00ffa3;
+        --accent-dim: rgba(0, 255, 163, 0.12);
+        --accent-mid: rgba(0, 255, 163, 0.4);
+        --text: #e8eaf0;
+        --text-muted: #7a7f8e;
+        --text-faint: #3d4150;
+        --mono: "Space Mono", monospace;
+        --sans: "Syne", sans-serif;
+        --red: #ff4d6d;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        font-family: Arial, sans-serif;
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* ── GRID BACKGROUND ── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 60px 60px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 3rem;
+        background: rgba(10, 12, 16, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+        font-family: var(--mono);
+        color: var(--text-muted);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        position: relative;
+        z-index: 1;
         max-width: 900px;
         margin: 0 auto;
-        padding: 1.5rem;
-        line-height: 1.6;
-        background-color: #f4f6f8; /* Page background */
+        padding: 5rem 2rem;
       }
 
-      header {
-        border-bottom: 2px solid #333;
+      section + section {
+        border-top: 1px solid var(--border);
+      }
+
+      /* ── HERO ── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 6rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero-tag {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
         margin-bottom: 1.5rem;
-        padding-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
       }
 
-      h1 {
-        margin-bottom: 0.2rem;
+      .hero-tag::before {
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 1px;
+        background: var(--accent);
       }
 
-      .tagline {
-        font-style: italic;
-        color: #555;
-      }
-
-      /* Section styling */
-      section {
-        background-color: #ffffff;
-        padding: 1.2rem;
+      h1.hero-name {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.02em;
         margin-bottom: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        color: #fff;
+      }
+
+      h1.hero-name span {
+        color: var(--accent);
+        display: block;
+      }
+
+      .hero-desc {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 520px;
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #000;
+        font-weight: 700;
+      }
+
+      .btn-primary:hover {
+        background: #fff;
+        transform: translateY(-2px);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--accent-mid);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      /* ── SECTION HEADERS ── */
+      .section-label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
       }
 
       h2 {
-        margin-top: 0;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 0.3rem;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.02em;
+        margin-bottom: 2.5rem;
       }
 
-      article {
-        margin-top: 1rem;
-        padding-top: 0.5rem;
-        border-top: 1px solid #eee;
+      /* ── ABOUT ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
       }
 
-      /* Form spacing */
-      form div {
+      .about-text p {
+        color: var(--text-muted);
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+      }
+
+      .about-text p strong {
+        color: var(--text);
+      }
+
+      .about-highlight {
+        background: var(--accent-dim);
+        border: 1px solid var(--border-accent);
+        border-radius: 8px;
+        padding: 1.5rem;
+      }
+
+      .about-highlight p {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--accent);
+        line-height: 1.8;
+      }
+
+      .about-highlight p span {
+        color: var(--text-muted);
+      }
+
+      /* ── SKILLS ── */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .skill-cell {
+        background: var(--surface);
+        padding: 1.5rem;
+        transition: background 0.2s;
+      }
+
+      .skill-cell:hover {
+        background: var(--surface-2);
+      }
+
+      .skill-cell h3 {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
         margin-bottom: 1rem;
       }
 
-      input,
-      textarea {
-        width: 100%;
-        padding: 0.5rem;
-        margin-top: 0.3rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
       }
 
-      button {
-        padding: 0.6rem 1rem;
+      .tag {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 3px;
+        background: var(--surface-2);
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+      }
+
+      .tag.accent {
+        background: var(--accent-dim);
+        border-color: var(--border-accent);
+        color: var(--accent);
+      }
+
+      /* ── PROJECTS ── */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+
+      .project-card:hover {
+        border-color: var(--border-accent);
+        transform: translateY(-3px);
+      }
+
+      .project-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .project-num {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--text-faint);
+        margin-bottom: 1rem;
+      }
+
+      .project-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.75rem;
+      }
+
+      .project-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+      }
+
+      .project-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+      }
+
+      .project-meta strong {
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 0.72rem;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .project-links a {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        text-decoration: none;
+        letter-spacing: 0.05em;
+        transition: opacity 0.2s;
+      }
+
+      .project-links a:hover {
+        opacity: 0.7;
+      }
+
+      .updating-badge {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        padding: 0.2rem 0.6rem;
+        background: rgba(255, 77, 109, 0.1);
+        border: 1px solid rgba(255, 77, 109, 0.25);
+        color: var(--red);
+        border-radius: 3px;
+        margin-bottom: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* ── EXPERIENCE ── */
+      .exp-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .exp-card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--accent);
+      }
+
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .exp-header h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .exp-header h3 span {
+        color: var(--accent);
+      }
+
+      .exp-duration {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        background: var(--surface-2);
+        padding: 0.3rem 0.75rem;
+        border-radius: 3px;
+        border: 1px solid var(--border);
+      }
+
+      .exp-desc {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      .exp-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .exp-cols h4 {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 0.75rem;
+      }
+
+      .exp-list {
+        list-style: none;
+      }
+
+      .exp-list li {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        padding: 0.35rem 0;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .exp-list li::before {
+        content: "→";
+        color: var(--accent);
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      /* ── DIARY ── */
+      .diary-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2rem;
+      }
+
+      .diary-date {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .diary-card p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .diary-card p:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .diary-card p strong {
+        color: var(--text);
+        display: block;
+        font-size: 0.72rem;
+        font-family: var(--mono);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+        color: var(--accent);
+      }
+
+      /* ── CONTACT ── */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .contact-info p {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .contact-info a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .contact-info a:hover {
+        color: var(--accent);
+      }
+
+      .contact-info .label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--accent);
+        min-width: 70px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .profile-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .profile-link {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: all 0.2s;
+        letter-spacing: 0.05em;
+      }
+
+      .profile-link:hover {
+        border-color: var(--accent-mid);
+        color: var(--accent);
+      }
+
+      /* ── FORM ── */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .form-group label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 0.75rem 1rem;
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        transition: border-color 0.2s;
+        outline: none;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent-mid);
+        background: var(--surface-2);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: var(--text-faint);
+      }
+
+      #submit-btn {
+        align-self: flex-start;
+        padding: 0.75rem 1.75rem;
+        background: var(--accent);
+        color: #000;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
         border: none;
-        background-color: #333;
-        color: white;
         border-radius: 4px;
         cursor: pointer;
+        transition: all 0.2s;
       }
 
-      button:hover {
-        background-color: #555;
+      #submit-btn:hover {
+        background: #fff;
+        transform: translateY(-2px);
+      }
+      #submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      #form-status {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid var(--border);
+        padding: 2rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      footer p {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--text-faint);
+      }
+
+      footer p span {
+        color: var(--accent);
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-tag {
+        animation: fadeInUp 0.5s ease both;
+      }
+      h1.hero-name {
+        animation: fadeInUp 0.5s 0.1s ease both;
+      }
+      .hero-desc {
+        animation: fadeInUp 0.5s 0.2s ease both;
+      }
+      .hero-cta {
+        animation: fadeInUp 0.5s 0.3s ease both;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 700px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .nav-links {
+          gap: 1.25rem;
+        }
+        section {
+          padding: 4rem 1.5rem;
+        }
+        .about-grid,
+        .contact-grid,
+        .exp-cols,
+        .projects-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        footer {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
       }
     </style>
   </head>
-
   <body>
-    <header>
-      <h1>Emmanuel Mugaine</h1>
-      <p class="tagline">Computer Science with Cyber Security undergraduate</p>
-    </header>
+    <!-- NAV -->
+    <nav>
+      <a href="#hero" class="nav-logo">EM_</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-    <main>
-      <section id="hero">
-        <h2>Hello, I’m Emmanuel Mugaine</h2>
+    <!-- HERO -->
+    <section id="hero">
+      <p class="hero-tag">University of York</p>
+      <h1 class="hero-name">Emmanuel<span>Mugaine</span></h1>
+      <p class="hero-desc">
+        Computer Science with Cyber Security undergraduate. Passionate about
+        threat detection, vulnerability research, and building secure systems.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <a href="#projects" class="btn btn-ghost">View projects</a>
+      </div>
+    </section>
 
-        <p>
-          <strong>Computer Science undergraduate</strong> at the University of
-          York.
-        </p>
-
-        <p>
-          <em>Interested in Cyber security and artificial intelligence.</em>
-        </p>
-
-        <p>
-          <strong>What I do:</strong><br />
-          I enjoy learning about threat detection and finding vulnerabilities in
-          network systems.
-        </p>
-
-        <p>
-          <a href="#projects">I am currently updating my projects list</a><br />
-          <a href="YourCVLink.pdf">I am currently updating my CV</a>
-        </p>
-      </section>
-
-      <section id="about">
-        <h2>About me</h2>
-
-        <p>
-          I am a first-year Computer Science student learning programming, web
-          development, computer architecture, and databases.
-        </p>
-
-        <p>
-          I am currently looking for internship and placement opportunities
-          where I can develop my cyber security skills and gain hands-on
-          experience in a SOC.
-        </p>
-
-        <p>
-          Outside my studies, I enjoy hackathons, coding challenges, and side
-          projects.
-        </p>
-      </section>
-
-      <section id="projects">
-        <h2>Featured projects</h2>
-
-        <article>
-          <h3>Project 1 – Title</h3>
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">01 / About</p>
+      <h2>Who I am</h2>
+      <div class="about-grid">
+        <div class="about-text">
           <p>
-            <strong>Summary:</strong> One or two sentences explaining the
-            project.
-          </p>
-          <p><strong>Tech stack:</strong> HTML, CSS, JavaScript</p>
-          <p><strong>My contribution:</strong> Explain what you did.</p>
-          <p>
-            <strong>Challenges:</strong> Describe a difficulty and solution.
+            I am a <strong>first-year Computer Science student</strong> learning
+            the fundamentals of programming, web development, computer
+            architecture, and databases.
           </p>
           <p>
-            <a href="#">Source code</a><br />
-            <a href="#">Live demo</a>
+            I am currently looking for
+            <strong>internship and placement opportunities</strong> where I can
+            develop my skills in cyber security and get hands-on experience in a
+            Security Operations Centre (SOC).
           </p>
-        </article>
+          <p>
+            Outside my studies, I enjoy hackathons, coding challenges, and
+            working on small side projects.
+          </p>
+        </div>
+        <div class="about-highlight">
+          <p><span>// interests</span></p>
+          <p>→ <span>Cyber Security</span></p>
+          <p>→ <span>Artificial Intelligence</span></p>
+          <p>→ <span>Cloud Computing</span></p>
+          <p>→ <span>Network Engineering</span></p>
+          <p>→ <span>Threat Detection</span></p>
+          <p>→ <span>Vulnerability Research</span></p>
+        </div>
+      </div>
+    </section>
 
-        <article>
-          <h3>Project 2 – Title</h3>
-          <p><strong>Summary:</strong> Short description.</p>
-          <p><strong>Tech stack:</strong> Python, Flask, SQL</p>
-          <p><strong>My contribution:</strong> Backend + database work.</p>
-          <p><strong>Challenges:</strong> Key learning point.</p>
-          <p><a href="#">Source code</a></p>
-        </article>
-      </section>
-
-      <section id="skills">
-        <h2>Skills and tools</h2>
-
-        <p>
-          <strong>Languages:</strong><br />
-          Python, Java, HTML, CSS, JavaScript, SQL
-        </p>
-
-        <p>
-          <strong>Frameworks and tools:</strong><br />
-          Git, GitHub, VS Code
-        </p>
-
-        <p>
-          <strong>Interests:</strong><br />
-          Cyber security, AI, cloud computing, networking
-        </p>
-      </section>
-      <!-- Professional experience section -->
-      <section id="experience">
-        <h2>Professional experience</h2>
-
-        <h3>Company: eCitizen – Intern</h3>
-        <p>
-          <strong>Duration:</strong>3 months (1 July 2024 – 1 September 2024)
-        </p>
-
-        <p>
-          <strong>Company Description:</strong><br />
-          Kenya's official centralised government platform providing access to
-          over 20,000 public services such as business registration and tax
-          filing.
-        </p>
-
-        <p><strong>Roles:</strong></p>
-        <ol>
-          <li>Assisted in monitoring citizen-focused services</li>
-          <li>Identified basic security misconfigurations</li>
-          <li>Contributed to incident documentation and reporting</li>
-        </ol>
-
-        <p><strong>Skills learnt:</strong></p>
-        <ol>
-          <li>Vulnerability detection</li>
-          <li>Incident response support</li>
-        </ol>
-      </section>
-
-      <section id="contact">
-        <h2>Contact</h2>
-
-        <p>Email: <a href="mailto:fxs525@york.ac.uk">fxs525@york.ac.uk</a></p>
-        <p>Location: York, United Kingdom</p>
-
-        <p>
-          <a href="https://github.com/EmmanuelMugaine">GitHub</a><br />
-          <a href="https://www.linkedin.com/">LinkedIn</a>
-        </p>
-
-        <h3>Get in touch</h3>
-
-        <form id="contact-form">
-          <div>
-            <label>Your Name</label>
-            <input type="text" id="name" required />
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label">02 / Skills</p>
+      <h2>Tools & technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-cell">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+            <span class="tag accent">Python</span>
+            <span class="tag accent">Java</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
           </div>
-
-          <div>
-            <label>Your Email</label>
-            <input type="email" id="email" required />
+        </div>
+        <div class="skill-cell">
+          <h3>Tools & Frameworks</h3>
+          <div class="skill-tags">
+            <span class="tag accent">Git</span>
+            <span class="tag accent">GitHub</span>
+            <span class="tag">VS Code</span>
           </div>
-
-          <div>
-            <label>Message</label>
-            <textarea id="message" rows="5" required></textarea>
+        </div>
+        <div class="skill-cell">
+          <h3>Interests</h3>
+          <div class="skill-tags">
+            <span class="tag accent">Cyber Security</span>
+            <span class="tag">AI</span>
+            <span class="tag">Cloud</span>
+            <span class="tag">Networking</span>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <button type="submit" id="submit-btn">Send Message</button>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">03 / Projects</p>
+      <h2>Featured work</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <span class="updating-badge">⟳ Updating</span>
+          <div class="project-num">01</div>
+          <h3>Project Title</h3>
+          <p>
+            One or two sentences explaining what the project does and who it is
+            for.
+          </p>
+          <p class="project-meta">
+            <strong>Stack:</strong> HTML, CSS, JavaScript
+          </p>
+          <p class="project-meta">
+            <strong>Role:</strong> Frontend development
+          </p>
+          <p class="project-meta">
+            <strong>Challenge:</strong> Briefly describe a difficulty and how
+            you solved it.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/yourusername/project1">Source code →</a>
+            <a href="https://your-demo-link.com">Live demo →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="updating-badge">⟳ Updating</span>
+          <div class="project-num">02</div>
+          <h3>Project Title</h3>
+          <p>Another short description for a second project.</p>
+          <p class="project-meta"><strong>Stack:</strong> Python, Flask, SQL</p>
+          <p class="project-meta">
+            <strong>Role:</strong> Database design & backend logic
+          </p>
+          <p class="project-meta">
+            <strong>Challenge:</strong> Mention something you learned.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/yourusername/project2">Source code →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label">04 / Experience</p>
+      <h2>Professional experience</h2>
+      <div class="exp-card">
+        <div class="exp-header">
+          <h3>eCitizen <span>— Intern</span></h3>
+          <span class="exp-duration">1 July – 1 September</span>
+        </div>
+        <p class="exp-desc">
+          Kenya's official centralised government hub, allowing citizens and
+          visitors to access over 20,000 government services online, such as
+          registering businesses and filing taxes.
+        </p>
+        <div class="exp-cols">
+          <div>
+            <h4>Responsibilities</h4>
+            <ul class="exp-list">
+              <li>Assisted in monitoring citizen-focused services</li>
+              <li>Identified basic security misconfigurations</li>
+              <li>
+                Contributed to documenting incidents and post-incident notes
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Skills Gained</h4>
+            <ul class="exp-list">
+              <li>Vulnerability detection</li>
+              <li>Incident response and support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIARY -->
+    <section id="production-diary">
+      <p class="section-label">05 / Diary</p>
+      <h2>Production diary</h2>
+      <div class="diary-card">
+        <div class="diary-date">// Week 1 — 13 February 2026</div>
+        <p>
+          <strong>What I did</strong>This week I worked on my GitHub Pages
+          portfolio website. I focused on populating the webpage with different
+          sections: About, Skills, Contact, and Work Experience.
+        </p>
+        <p>
+          <strong>Highlights</strong>I am most happy with the general layout of
+          the webpage as well as how it's formatted and designed.
+        </p>
+        <p>
+          <strong>Challenges</strong>I found it difficult to include only the
+          necessary information without over-explaining. I also found it hard to
+          spot errors in earlier parts of my code — though I expect this will
+          improve with practice.
+        </p>
+        <p>
+          <strong>Next steps</strong>I want to declutter the main page and move
+          sections into separate areas that visitors can navigate to. I also aim
+          to complete a project and update the projects section so it isn't left
+          as "updating".
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label">06 / Contact</p>
+      <h2>Get in touch</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>
+            <span class="label">Email</span
+            ><a href="mailto:fxs525@york.ac.uk">fxs525@york.ac.uk</a>
+          </p>
+          <p><span class="label">Location</span>York, United Kingdom</p>
+          <div class="profile-links">
+            <a href="https://github.com/EmmanuelMugaine" class="profile-link"
+              >GitHub →</a
+            >
+            <a
+              href="https://www.linkedin.com/in/emmanuel-mugaine-93ba3a335/"
+              class="profile-link"
+              >LinkedIn →</a
+            >
+          </div>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Jane Smith"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Your email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="jane@example.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              placeholder="Say hello..."
+              rows="5"
+            ></textarea>
+          </div>
+          <button type="submit" id="submit-btn">Send message</button>
           <p id="form-status"></p>
         </form>
-      </section>
+      </div>
+    </section>
 
-      <!-- Production diary -->
-      <section id="production-diary">
-        <h2>Production diary – Week 1</h2>
+    <footer>
+      <p>
+        Emmanuel Mugaine — <span>Computer Science with Cyber Security</span>
+      </p>
+      <p>University of York</p>
+    </footer>
 
-        <p><strong>Date:</strong> 13 February 2026</p>
+    <script>
+      const SUPABASE_URL = "https://qhipffhyontkpnremioe.supabase.co";
+      const SUPABASE_ANON = "sb_publishable_GqTA4My14PP_3GUKFlizfQ_vWBHNhIh";
 
-        <p>
-          This week I worked on my GitHub Pages portfolio website. I focused on
-          structuring the webpage into sections such as About, Skills, Contact,
-          and Work Experience.
-        </p>
-
-        <p>
-          I am most satisfied with the overall layout and formatting of the
-          page.
-        </p>
-
-        <p>
-          A challenge was limiting content to only the most relevant
-          information, as well as identifying earlier coding errors. This is
-          expected to improve with practice.
-        </p>
-
-        <p>
-          Going forward, I plan to declutter the homepage and distribute content
-          across multiple pages. I also intend to complete projects so the
-          projects section reflects actual work rather than placeholders.
-        </p>
-      </section>
-    </main>
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const message = document.getElementById("message").value.trim();
+          const btn = document.getElementById("submit-btn");
+          const status = document.getElementById("form-status");
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+          status.textContent = "";
+          try {
+            const response = await fetch(
+              `${SUPABASE_URL}/rest/v1/contact_messages`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  apikey: SUPABASE_ANON,
+                  Authorization: `Bearer ${SUPABASE_ANON}`,
+                  Prefer: "return=minimal",
+                },
+                body: JSON.stringify({ name, email, message }),
+              },
+            );
+            if (response.ok) {
+              status.textContent = "✓ Message sent! I'll be in touch soon.";
+              status.style.color = "#00ffa3";
+              event.target.reset();
+            } else {
+              const err = await response.json();
+              console.error("Supabase error:", err);
+              status.textContent = "Something went wrong. Please try again.";
+              status.style.color = "#ff4d6d";
+            }
+          } catch (networkError) {
+            console.error("Network error:", networkError);
+            status.textContent =
+              "Could not connect. Check your internet connection.";
+            status.style.color = "#ff4d6d";
+          } finally {
+            btn.disabled = false;
+            btn.textContent = "Send message";
+          }
+        });
+    </script>
   </body>
 </html>
