@@ -1101,7 +1101,8 @@
             } else {
               const err = await response.json();
               console.error("Supabase error:", err);
-              status.textContent = "Something went wrong. Please try again.";
+              status.textContent =
+                "Something went wrong on our end. Please try again later.";
               status.style.color = "#ff4d6d";
             }
           } catch (networkError) {
